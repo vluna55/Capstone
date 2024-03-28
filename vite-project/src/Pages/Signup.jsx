@@ -1,25 +1,52 @@
 import React, { useState } from 'react'
+import { Input } from '../Components/Input';
+import { useNavigate } from 'react-router-dom';
+import { signup } from '../API';
 
 const Signup = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [registrationStatus, setRegistrationStatus] = useState(null);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    console.log("submit function");
+    const res = await signup(fName, lName, email, password);
+
+    if (res.success) {
+      setRegistrationStatus("Registration successful!");
+    } else {
+      setRegistrationStatus("Registration failed. Please try again.");
+    }
+    navigate("/");
+  }
+
   return (
     <div>
-        <h2>Registration</h2>
-        <form>
-            <label type="text">First Name</label>
-            <input type='text' placeholder='John' />
-            <label type='text'>Last Name</label>
-            <input type='text' placeholder='Doe' />
-            <label type="email">Email</label>
-            <input type='email' placeholder='email@example.com' />
-            <label type='password'>Password</label>
-            <input type='password' placeholder='password' />
-            <label type='password'>Re-enter Password</label>
-            <input type='password' placeholder='password' />
-        </form>
+      <form onSubmit={handleSubmit}>
+        <Input
+          text="First Name"
+          type="text"
+          state={fName}
+          setState={setFName}
+        />
+        <Input text="Last Name" type="text" state={lName} setState={setLName} />
+        <Input text="Email" type="email" state={email} setState={setEmail} />
+        <Input
+          text="Password"
+          type="password"
+          state={password}
+          setState={setPassword}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {registrationStatus && <p>{registrationStatus}</p>}
     </div>
-  )
-}
+  );
+};
 
 export default Signup
