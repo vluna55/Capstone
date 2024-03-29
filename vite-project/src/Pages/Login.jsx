@@ -8,13 +8,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setToken } = useContext(UserContext);
-  useEffect
+
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
+    console.log("email:", email);
     console.log("Password:", password);
     try {
       const result = await login(email, password);

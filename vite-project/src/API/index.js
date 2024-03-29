@@ -11,11 +11,11 @@ export async function getProducts() {
     }
   }
 
-  export async function getSingleProduct() {
+  export async function getSingleProduct(id) {
     try {
-        const response = await fetch(`${APIURL}/products/1`);
+        const response = await fetch(`${APIURL}/products/${id}`);
         const result = await response.json();
-        console.log(result);
+        return result;
     } catch (error) {
         console.log(error)
     }
@@ -46,7 +46,7 @@ export async function getProducts() {
     }
   }
 
-  export async function login(username, password) {
+  export async function login (username, password) {
     try {
       const response = await fetch(`${APIURL}/auth/login`, {
         method: "POST",
@@ -54,8 +54,8 @@ export async function getProducts() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
-          password,
+          username: username,
+          password: password,
         }),
       });
       const result = await response.json();
