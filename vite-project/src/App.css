@@ -50,7 +50,6 @@
   flex-direction: column;
   text-align: left;
   background: #a4b06e04;
-  box-shadow: 50px 20px 70px rgba(253, 19, 2, 0.2);
   padding: 10px 100px 25px 105px;
   transition: all .3s;
 }
