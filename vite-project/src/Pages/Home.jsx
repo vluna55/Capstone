@@ -16,8 +16,8 @@ const Home = () => {
       {products.map((product) => {
         return (<>
         <h2>{product.title}</h2>
-        <p>{product.price}</p>
-        <p>{product.category}</p>
+        <p>${product.price}</p>
+        <p>"{product.category}"</p>
         <img src={product.image} alt={product.title} />
         <p>{product.description}</p>
         </>)
