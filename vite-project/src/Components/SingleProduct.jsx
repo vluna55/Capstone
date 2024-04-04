@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { getSingleProduct } from '../API';
+import React, { useState, useEffect } from "react";
+import { getSingleProduct } from "../API";
+import { useParams } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
 
 const SingleProduct = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null)
-  useEffect (() =>{
-    async function displayProduct () {
-      const {product} = await getSingleProduct(id)
-      setProduct(product);
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
 
-    }
-    displayProduct();
+  useEffect(() => {
+    const fetchSingleProduct = async () => {
+      const result = await getSingleProduct(productId);
+      setProduct(result);
+    };
+    fetchSingleProduct();
+  }, [productId]);
 
-  },[]);
-  return (
-    <div>SingleProduct</div>
-  )
-}
+  if (!product) {
+    return <h1>Loading...</h1>
+  }
 
-export default SingleProduct
+  return <ProductDetails product={product} isSingle />;
+};
+
+export default SingleProduct;
