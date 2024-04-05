@@ -1,33 +1,37 @@
-import React from 'react'
-import {Link, useNavigate } from "react-router-dom"
+import React from "react";
 import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
 
-
-const Navbar = ({token, setToken}) => {
-    const navigate = useNavigate
-    const handleLogout = () => {
-        setToken(null)
-        navigate("/login")
-    }
+const Navbar = ({ token, setToken }) => {
+  const navigate = useNavigate;
+  const handleLogout = () => {
+    setToken(null);
+    navigate("/login");
+  };
   return (
     <nav className="navbar-container">
-        <div>
-            Capstone
-        </div>
-        <div className='link'>
-            <Link className='nav-link' to={"/"}>
-                Prodcuts
+      <div>Capstone</div>
+      <div className="link">
+        <Link className="nav-link" to={"/"}>
+          Prodcuts
+        </Link>
+        {token ? (
+          <>
+            <Link className="nav-link" to={"/cart"}>
+              cart
             </Link>
-
-            {token ? (
-            <button className='logout-button' onClick={handleLogout}>Logout</button> ): (
-            <Link to="/login" className='nav-link'>
-                login
-            </Link>  
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="nav-link">
+            login
+          </Link>
         )}
-        </div>
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

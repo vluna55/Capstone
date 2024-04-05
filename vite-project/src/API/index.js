@@ -40,3 +40,24 @@ export const getSingleProduct = async (id) => {
     console.error("There was an error /GET single product", error);
   }
 };
+
+export const getAllUsers = async (username) => {
+  try {
+    const response = await fetch(`${API_URL}/users`);
+    const result = await response.json();
+    const userData = result.find((user) => user.username === username);
+    return userData;
+  } catch (error) {
+    console.error("Error GET/ all USERS", error);
+  }
+};
+
+export const getUserCart = async (id) => {
+  try {
+    const response = await `${API_URL}/carts/${id}`;
+    const result = await response.json();
+    return result.products;
+  } catch (error) {
+    console.error("Error GET/ user cart", error);
+  }
+};
