@@ -1,27 +1,17 @@
 import React from "react";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
+import { addCartItem } from "../utils/helpers";
 
 const ProductDetails = ({ product, isSingle, cart, setCart }) => {
+  console.log("cart", cart)
   const navigate = useNavigate();
   const handleViewItemClick = () => {
     navigate(`/products/${product.id}`);
   };
   const handleAddToCart = () => {
     const productId = product.id;
-    console.log(cart);
-    const existingCartItemIndex = cart.findIndex(
-      (item) => item.productId === productId
-    );
-
-    if (existingCartItemIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingCartItemIndex].quantity += 1;
-      setCart(updatedCart);
-    } else {
-      const newItem = { productId, quantity: 1 };
-      setCart((prevCart) => [...prevCart, newItem]);
-    }
+    setCart((prevCart) => addCartItem(prevCart, productId))
   };
 
   return (

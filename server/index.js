@@ -45,6 +45,33 @@ app.post("/api/auth/register", async (req, res, next) => {
   }
 });
 
+app.post('/create-checkout-session', async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+      // pass your products via req.body
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'T-shirt',
+          },
+          unit_amount: 2000,
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      success_url: `${req.headers.origin}/success.html`, // route on your react app
+      cancel_url: `${req.headers.origin}/cancel.html`,
+    });
+
+    res.json({ id: session.id });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 app.get("/api/auth/me", isLoggedIn, (req, res, next) => {
   try {
     res.send(req.user);

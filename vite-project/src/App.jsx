@@ -6,6 +6,10 @@ import AllProduct from "./Components/AllProducts";
 import { getAllProducts } from "./API";
 import SingleProduct from "./Components/SingleProduct";
 import Cart from "./Components/Cart";
+import CheckoutPage from "./Components/CheckoutPage";
+import Categories from "./Components/Categories";
+import CategoriesDropdown from "./Components/CategoriesDropdown";
+import Register from "./Components/Register";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -37,11 +41,12 @@ function App() {
       localStorage.removeItem("user");
       localStorage.removeItem("cart");
     }
-  }, [token]);
+  }, [token, cart, user]);
   return (
     <>
-      <Navbar token={token} setToken={setToken} />
       <div>
+      <Navbar token={token} setToken={setToken} />
+          <CategoriesDropdown />
         <Routes>
           <Route
             path="/"
@@ -63,6 +68,11 @@ function App() {
             path="/cart"
             element={<Cart cart={cart} products={products} setCart={setCart} />}
           />
+          <Route path="/checkout" element={<CheckoutPage />} />
+
+          <Route path="/Register" element={<Register />} />
+
+          <Route path="/categories/:categoryItem" element={<Categories products={products} setCart={setCart} cart={cart} />} />
         </Routes>
       </div>
     </>
