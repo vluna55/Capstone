@@ -54,9 +54,11 @@ export const getAllUsers = async (username) => {
 
 export const getUserCart = async (id) => {
   try {
-    const response = await `${API_URL}/carts/${id}`;
+    console.log(id);
+    const response = await fetch(`${API_URL}/carts/user/${id}`);
     const result = await response.json();
-    return result.products;
+    console.log("Results", result);
+    return result[0].products;
   } catch (error) {
     console.error("Error GET/ user cart", error);
   }

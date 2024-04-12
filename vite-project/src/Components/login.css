@@ -3,53 +3,56 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, sans-serif; 
-}
-
-.login-form {
-    background-color: rgb(43, 140, 224);
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-form {
+    background-color: #007bff; /* Blue color */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px black rgba(0, 0, 0, 0.1);
     width: 300px;
-}
-
-.login-form h2 {
+  }
+  
+  .login-form h2 {
     text-align: center;
     margin-bottom: 20px;
-    font-family: Arial, sans-serif; 
-}
-
-.form-group {
+    font-family: Arial, sans-serif;
+    color: #fff; /* White color */
+  }
+  
+  .form-group {
     margin-bottom: 15px;
-}
-
-.form-group label {
+  }
+  
+  .form-group label {
     display: block;
     margin-bottom: 5px;
-    font-family: Arial, sans-serif; 
-}
-
-.form-group input {
+    font-family: Arial, sans-serif;
+    color: #fff; /* White color */
+  }
+  
+  .form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid #fff; 
     border-radius: 5px;
-    font-family: Arial, sans-serif; 
-}
-
-button {
+    font-family: Arial, sans-serif;
+  }
+  
+  button {
     width: 100%;
     padding: 10px;
-    background-color: lightblue;
-    color: white;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-family: Arial, sans-serif; 
-}
-
-button:hover {
-    background-color: blue;
-}
+    font-family: Arial, sans-serif;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue color */
+  }
+  

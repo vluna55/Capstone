@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "./CheckoutPage.css";
 
 const CheckoutPage = () => {
-
-const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  address: "",
-  city: "",
-  zip: "",
-  country: "",
-});
-
-const handleChange = (e) => {
-  const { name, value } = e.target;
-  setFormData({
-    ...formData,
-    [name]: value,
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    city: "",
+    zip: "",
+    country: "",
   });
-};
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  console.log(formData);
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+  };
 
   return (
     <div className="checkout-page">
@@ -85,5 +84,4 @@ const handleSubmit = (e) => {
   );
 };
 
-
-export default CheckoutPage
+export default CheckoutPage;

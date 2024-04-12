@@ -25,16 +25,14 @@ const Navbar = ({ token, setToken }) => {
             <Link className="nav-link" to={"/cart"}>
               Cart
             </Link>
-            <Link className="nav-link" to={"/checkout"}>
-              Checkout
-            </Link>
+            
             <button className="logout-button" onClick={handleLogout}>
               Logout
             </button>
           </>
         ) : (
           <Link to="/login" className="nav-link" >
-            login
+            Login
           </Link>
         )}
       </div>

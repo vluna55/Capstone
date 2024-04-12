@@ -14,9 +14,10 @@ import Register from "./Components/Register";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
+  const localCart = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+  const [cart, setCart] = useState(localCart);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
@@ -45,8 +46,8 @@ function App() {
   return (
     <>
       <div>
-      <Navbar token={token} setToken={setToken} />
-          <CategoriesDropdown />
+        <Navbar token={token} setToken={setToken} />
+        <CategoriesDropdown />
         <Routes>
           <Route
             path="/"
@@ -72,7 +73,12 @@ function App() {
 
           <Route path="/Register" element={<Register />} />
 
-          <Route path="/categories/:categoryItem" element={<Categories products={products} setCart={setCart} cart={cart} />} />
+          <Route
+            path="/categories/:categoryItem"
+            element={
+              <Categories products={products} setCart={setCart} cart={cart} />
+            }
+          />
         </Routes>
       </div>
     </>
